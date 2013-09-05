@@ -3,7 +3,10 @@ module tb_search();
    reg rst;
    reg start;
    wire done;
-  
+
+   reg [1023:0] puz_filename;
+   integer 	fh;
+
    wire [728:0] outGrid;
    wire [728:0] inGrid;
 
@@ -15,9 +18,16 @@ module tb_search();
 	clk = 0;
 	rst = 1;
 
-	$readmemh("puzzle_9.hex", mem);
-	$display("mem[0] = %x, mem[80] = %x",
-		 mem[0], mem[80]);	
+	if($value$plusargs("puz=%s", puz_filename))
+	  begin
+	     $readmemh(puz_filename, mem);	     
+	  end
+	else
+	  begin
+	     $display("no puzzle filename, use +puz=!");
+	     $finish();
+	  end
+	
       	#1000
 	  rst = 0;
      end
