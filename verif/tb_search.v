@@ -57,7 +57,15 @@ module tb_search();
 	       .inGrid			(inGrid[728:0])
 	       );
 
-   assign inGrid = {mem[0],mem[1],mem[2],mem[3],mem[4],mem[5],mem[6],mem[7],mem[8],mem[9],mem[10],mem[11],mem[12],mem[13],mem[14],mem[15],mem[16],mem[17],mem[18],mem[19],mem[20],mem[21],mem[22],mem[23],mem[24],mem[25],mem[26],mem[27],mem[28],mem[29],mem[30],mem[31],mem[32],mem[33],mem[34],mem[35],mem[36],mem[37],mem[38],mem[39],mem[40],mem[41],mem[42],mem[43],mem[44],mem[45],mem[46],mem[47],mem[48],mem[49],mem[50],mem[51],mem[52],mem[53],mem[54],mem[55],mem[56],mem[57],mem[58],mem[59],mem[60],mem[61],mem[62],mem[63],mem[64],mem[65],mem[66],mem[67],mem[68],mem[69],mem[70],mem[71],mem[72],mem[73],mem[74],mem[75],mem[76],mem[77],mem[78],mem[79],mem[80]};
+   genvar     i;
+   generate
+      for(i=0;i<81;i=i+1)
+	begin: inGridGen
+	   assign inGrid[(9*(i+1)-1):(9*i)] = mem[i];
+	   
+	end
+   endgenerate
+   
 
    reg [31:0] r_cnt;
   
@@ -65,7 +73,7 @@ module tb_search();
    wire [8:0] result [80:0];
    wire [8:0] result_dec [80:0];
    
-   genvar     i;
+
    integer    y,x;
      
    generate

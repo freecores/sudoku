@@ -352,8 +352,14 @@ assign cols[80] = {currGrid[8],currGrid[17],currGrid[26],currGrid[35],currGrid[4
 assign rows[80] = {currGrid[72],currGrid[73],currGrid[74],currGrid[75],currGrid[76],currGrid[77],currGrid[78],currGrid[79]};
 assign sqrs[80] = {currGrid[60],currGrid[61],currGrid[62],currGrid[69],currGrid[70],currGrid[71],currGrid[78],currGrid[79]};
 
+  generate
+     for(i=0;i<81;i=i+1)
+       begin: outGridGen
+	  assign outGrid[(9*(i+1)-1):(9*i)] = currGrid[i];
 
-   assign outGrid = {currGrid[0],currGrid[1],currGrid[2],currGrid[3],currGrid[4],currGrid[5],currGrid[6],currGrid[7],currGrid[8],currGrid[9],currGrid[10],currGrid[11],currGrid[12],currGrid[13],currGrid[14],currGrid[15],currGrid[16],currGrid[17],currGrid[18],currGrid[19],currGrid[20],currGrid[21],currGrid[22],currGrid[23],currGrid[24],currGrid[25],currGrid[26],currGrid[27],currGrid[28],currGrid[29],currGrid[30],currGrid[31],currGrid[32],currGrid[33],currGrid[34],currGrid[35],currGrid[36],currGrid[37],currGrid[38],currGrid[39],currGrid[40],currGrid[41],currGrid[42],currGrid[43],currGrid[44],currGrid[45],currGrid[46],currGrid[47],currGrid[48],currGrid[49],currGrid[50],currGrid[51],currGrid[52],currGrid[53],currGrid[54],currGrid[55],currGrid[56],currGrid[57],currGrid[58],currGrid[59],currGrid[60],currGrid[61],currGrid[62],currGrid[63],currGrid[64],currGrid[65],currGrid[66],currGrid[67],currGrid[68],currGrid[69],currGrid[70],currGrid[71],currGrid[72],currGrid[73],currGrid[74],currGrid[75],currGrid[76],currGrid[77],currGrid[78],currGrid[79],currGrid[80]};
+       end
+  endgenerate
+      
    
    genvar ii,jj;
    wire [80:0] c_rows [8:0];
